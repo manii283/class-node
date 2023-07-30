@@ -1,10 +1,10 @@
-var mysql = require('mysql');
+var mysql = require("mysql");
 
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mydb"
+  database: "mydb",
 });
 
 // -----Select With a Filter
@@ -16,12 +16,23 @@ var con = mysql.createConnection({
 //   });
 // });
 
-
 // -----Wildcard Characters
-con.connect(function(err) {
-    if (err) throw err;
-    con.query("SELECT * FROM customers WHERE address LIKE 'c%'", function (err, result) {
-      if (err) throw err;
-      console.log(result);
-    });
-  });
+// con.connect(function (err) {
+//   if (err) throw err;
+//   con.query(
+//     "SELECT * FROM customers WHERE address LIKE 'c%'",
+//     function (err, result) {
+//       if (err) throw err;
+//       console.log(result);
+//     }
+//   );
+// });
+
+// -----Escaping Query Values
+
+var adr = "Mountain 21";
+var sql = "SELECT * FROM customers WHERE address = " + mysql.escape(adr);
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log(result);
+});
