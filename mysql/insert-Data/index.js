@@ -41,4 +41,4 @@ con.connect(function(err) {
       /*Use the result object to get the id:*/
       console.log("1 record inserted, ID: " + result.insertId);
     });
-  });
+});

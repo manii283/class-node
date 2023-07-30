@@ -7,10 +7,18 @@ var con = mysql.createConnection({
   database: "mydb"
 });
 
+// con.connect(function(err) {
+//   if (err) throw err;
+//   con.query("SELECT * FROM customers", function (err, result, fields) {
+//     if (err) throw err;
+//     console.log(result);
+//   });
+// });
+
 con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT * FROM customers", function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
+    con.query("SELECT name, address FROM customers", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+    });
   });
-});
